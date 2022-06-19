@@ -16,6 +16,8 @@ namespace ConnString
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            var connString = configuration.GetConnectionString("DefaultConnection");
         }
 
         public IConfiguration Configuration { get; }
