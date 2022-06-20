@@ -1,4 +1,6 @@
-﻿using ConnString.Models;
+﻿using Class.ConfigManager;
+using Class.SqlLogger;
+using ConnString.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,14 +14,17 @@ namespace ConnString.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ISqlLogManager _sqlLogManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,ISqlLogManager sqlLogManager)
         {
             _logger = logger;
+            _sqlLogManager = sqlLogManager;
         }
 
         public IActionResult Index()
         {
+            var sqlConn = _sqlLogManager.InitDb();
             return View();
         }
 

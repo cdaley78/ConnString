@@ -1,4 +1,6 @@
 using Class.ConfigManager;
+using Class.Data;
+using Class.SqlLogger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -12,8 +14,6 @@ namespace ConnString
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
-            var connString = configuration.GetConnectionString("DefaultConnection");
         }
 
         public IConfiguration Configuration { get; }
@@ -22,7 +22,10 @@ namespace ConnString
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<IConfigManager, ConfigManager>();
+
+            services.AddScoped<IConfigManager, ConfigManager>();
+            services.AddScoped<IDataManager, DataManager>();
+            services.AddScoped<ISqlLogManager, SqlLogManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnString", "ConnString\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Class.Data", "Class.Data\Class.Data.csproj", "{B4F2C237-7685-44DD-807F-6BD54039C41E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Class.Business", "Class.Business\Class.Business.csproj", "{1388A256-8CB7-46DC-BA27-4844AC88BEED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Class.SqlLogger", "Class.Business\Class.SqlLogger.csproj", "{1388A256-8CB7-46DC-BA27-4844AC88BEED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Class.Config", "ConfigManager\Class.Config.csproj", "{FF833B62-8CBC-4216-96CE-D4620075E3DC}"
 EndProject

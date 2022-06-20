@@ -1,21 +1,53 @@
-﻿using Class.ConfigManager;
+﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Class.Data
 {
 
-    public class DataManager
+    public class DataManager: IDataManager
     {
-        private readonly IConfigManager _configuration;
+        private SqlConnection _conn;
+        private SqlCommand _cmd;
+        private const int _commandTimeout = 0;
+        private Exception _error = null;
 
-        public DataManager(IConfigManager configuration)
+        private string _connectionString;
+
+        public bool InitConnection()
         {
-            _configuration = configuration;
+            try
+            {
+                _conn = new SqlConnection(_connectionString);
+            }
+            catch (Exception ex)
+            {
+                _error = ex;
+                return false;
+            }
+
+            return true;
         }
 
-        public string GetCmsConnectionString()
+        public SqlCommand GetStoredProcCommand(string commandText)
         {
-            return _configuration.GetConnectionString(_configuration.CmsPlusConnectionName);
+            return CreateCommand(commandText, CommandType.StoredProcedure);
         }
 
+        public SqlCommand CreateCommand(string commandText, CommandType commandType)
+        {
+            _cmd = new SqlCommand(commandText, _conn);
+            _cmd.CommandType = commandType;
+            _cmd.CommandTimeout = _commandTimeout;
+
+            return _cmd;
+        }
+
+        public bool SetConnectionString(string connectionString)
+        {
+            _connectionString = connectionString;
+
+            return true;
+        }
     }
 }

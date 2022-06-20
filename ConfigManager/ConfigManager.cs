@@ -11,7 +11,8 @@ namespace Class.ConfigManager
             _configuration = configuration;
         }
 
-        public string CmsPlusConnectionName => _configuration["ConnectionStrings:CmsPlus"];
+        public string ConnectionNameFsiTraining => "FsiTraining";
+        public string ConnectionNameFsiTrainingLogger => "FsiTrainingLogger";
 
         public IConfigurationSection GetConfigurationSection(string Key)
         {
